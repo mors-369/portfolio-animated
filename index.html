@@ -47,13 +47,8 @@
         --radius: 12px;
         --maxWidth: 1120px;
       }
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
       body {
         margin: 0;
         font-family: "Inter", system-ui, Arial, sans-serif;
@@ -68,581 +63,111 @@
       /* Aurora Background & Cursor Glow */
       body::before {
         content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-            800px circle at 10% 20%,
-            rgba(224, 49, 49, 0.08),
-            transparent 40%
-          ),
-          radial-gradient(
-            600px circle at 90% 80%,
-            rgba(224, 49, 49, 0.05),
-            transparent 40%
-          );
-        z-index: -2;
-        animation: background-pan 20s ease-in-out infinite;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(800px circle at 10% 20%, rgba(224,49,49,.08), transparent 40%),
+                    radial-gradient(600px circle at 90% 80%, rgba(224,49,49,.05), transparent 40%);
+        z-index: -2; animation: background-pan 20s ease-in-out infinite;
       }
+      @keyframes background-pan { 0%,100% { background-position: 0% 0%, 100% 100%; } 50% { background-position: 100% 100%, 0% 0%; } }
 
-      @keyframes background-pan {
-        0%,
-        100% {
-          background-position: 0% 0%, 100% 100%;
-        }
-        50% {
-          background-position: 100% 100%, 0% 0%;
-        }
-      }
+      .cursor-glow { position: fixed; top:0; left:0; width:600px; height:600px; background: radial-gradient(circle, rgba(224,49,49,.08) 0%, transparent 60%); border-radius:50%; transform: translate(-50%, -50%); pointer-events:none; z-index:-1; transition: transform .1s ease-out; }
+      @media (pointer: coarse) { .cursor-glow { display:none; } }
 
-      .cursor-glow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(
-          circle,
-          rgba(224, 49, 49, 0.08) 0%,
-          transparent 60%
-        );
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: -1;
-        transition: transform 0.1s ease-out;
-      }
-      @media (pointer: coarse) {
-        .cursor-glow {
-          display: none;
-        }
-      }
-
-      .container {
-        width: 100%;
-        max-width: var(--maxWidth);
-        margin: 0 auto;
-        padding: 0 20px;
-      }
+      .container { width:100%; max-width: var(--maxWidth); margin:0 auto; padding:0 20px; }
 
       /* Navigation */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(7, 7, 7, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border-color);
-        padding: 12px 0;
-        z-index: 100;
-        display: flex;
-        justify-content: center;
-      }
-      nav ul {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 24px;
-        margin: 0;
-        padding: 0;
-      }
-      nav a {
-        color: var(--muted);
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s, transform 0.2s;
-        display: block;
-      }
-      nav a:hover {
-        color: #fff;
-        transform: translateY(-2px);
-      }
+      nav { position: fixed; top:0; left:0; width:100%; background: rgba(7,7,7,.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom:1px solid var(--border-color); padding:12px 0; z-index:100; display:flex; justify-content:center; }
+      nav ul { list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin:0; padding:0; }
+      nav a { color: var(--muted); text-decoration:none; font-weight:600; transition: color .2s, transform .2s; display:block; }
+      nav a:hover { color:#fff; transform: translateY(-2px); }
 
       /* Header / Hero */
-      header {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 80px 0 60px;
-      }
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr 380px;
-        gap: 40px;
-        align-items: center;
-      }
+      header { min-height: 100vh; display:flex; align-items:center; padding:80px 0 60px; }
+      .hero-grid { display:grid; grid-template-columns: 1fr 380px; gap:40px; align-items:center; }
 
-      h1 {
-        font-size: clamp(32px, 5vw, 64px);
-        margin: 0 0 10px;
-        font-weight: 800;
-        letter-spacing: -1.5px;
-        line-height: 1.05;
-        background: linear-gradient(180deg, #fff, #dcdcdc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+      h1 { font-size: clamp(32px, 5vw, 64px); margin:0 0 10px; font-weight:800; letter-spacing:-1.5px; line-height:1.05; background: linear-gradient(180deg,#fff,#dcdcdc); -webkit-background-clip:text; -webkit-text-fill-color: transparent; }
       /* NAME HOVER EFFECT STYLES */
-      h1#name-hover-effect span {
-        transition: color 0.2s ease;
-        display: inline-block;
-      }
-      h1#name-hover-effect span:hover {
-        background: none;
-        -webkit-text-fill-color: var(--accent);
-        transform: scale(1.1) translateY(-3px);
-      }
+      h1#name-hover-effect span { transition: color .2s ease; display:inline-block; }
+      h1#name-hover-effect span:hover { background:none; -webkit-text-fill-color: var(--accent); transform: scale(1.1) translateY(-3px); }
 
-      .tagline {
-        color: var(--muted);
-        font-weight: 600;
-        font-size: 1.1rem;
-      }
-      .quote {
-        margin-top: 18px;
-        max-width: 720px;
-        font-style: italic;
-        color: #ffdede;
-        font-weight: 600;
-      }
+      .tagline { color: var(--muted); font-weight:600; font-size:1.1rem; }
+      .quote { margin-top:18px; max-width:720px; font-style: italic; color:#ffdede; font-weight:600; }
 
-      .glow-rotate {
-        display: inline-block;
-        position: relative;
-        color: #fff;
-        font-weight: 700;
-        padding: 8px 12px;
-        border-radius: 8px;
-        transition: transform 0.18s ease;
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2),
-          rgba(255, 255, 255, 0.01)
-        );
-      }
-      .glow-rotate::before {
-        content: "";
-        position: absolute;
-        inset: -6px;
-        border-radius: 10px;
-        background: conic-gradient(
-          from 0deg,
-          rgba(0, 0, 0, 0),
-          rgba(224, 49, 49, 0.1),
-          rgba(224, 49, 49, 0.15),
-          rgba(0, 0, 0, 0)
-        );
-        filter: blur(12px);
-        opacity: 0.95;
-        transform: rotate(0deg);
-        z-index: -2;
-        transition: opacity 0.25s ease;
-        animation: spinGlow 6s linear infinite;
-      }
-      @keyframes spinGlow {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .glow-rotate::after {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: 8px;
-        background: radial-gradient(
-          circle at 20% 20%,
-          rgba(224, 49, 49, 0.14),
-          transparent 30%
-        );
-        z-index: -1;
-        mix-blend-mode: screen;
-        pointer-events: none;
-      }
+      .glow-rotate { display:inline-block; position:relative; color:#fff; font-weight:700; padding:8px 12px; border-radius:8px; transition: transform .18s ease; background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(255,255,255,.01)); }
+      .glow-rotate::before { content:""; position:absolute; inset:-6px; border-radius:10px; background: conic-gradient(from 0deg, rgba(0,0,0,0), rgba(224,49,49,.1), rgba(224,49,49,.15), rgba(0,0,0,0)); filter: blur(12px); opacity:.95; transform: rotate(0deg); z-index:-2; transition: opacity .25s ease; animation: spinGlow 6s linear infinite; }
+      @keyframes spinGlow { from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+      .glow-rotate::after { content:""; position:absolute; inset:-2px; border-radius:8px; background: radial-gradient(circle at 20% 20%, rgba(224,49,49,.14), transparent 30%); z-index:-1; mix-blend-mode: screen; pointer-events:none; }
 
-      .cta-row {
-        display: flex;
-        gap: 12px;
-        margin-top: 24px;
-        flex-wrap: wrap;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: transparent;
-        border: 1px solid var(--border-color);
-        color: #fff;
-        padding: 10px 16px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      .btn.primary {
-        background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-        color: #fff;
-        border: none;
-      }
-
-      /* BUTTON HOVER EFFECT */
-      .btn:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5),
-          0 0 20px rgba(224, 49, 49, 0.2);
-        border-color: rgba(224, 49, 49, 0.3);
-      }
-      .btn.primary:hover {
-        box-shadow: 0 12px 30px rgba(224, 49, 49, 0.2),
-          0 0 30px rgba(224, 49, 49, 0.3);
-      }
+      .cta-row { display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+      .btn { display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--border-color); color:#fff; padding:10px 16px; border-radius:10px; cursor:pointer; font-weight:600; transition: all .2s ease; position:relative; overflow:hidden; }
+      .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent-dark)); color:#fff; border:none; }
+      .btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,.5), 0 0 20px rgba(224,49,49,.2); border-color: rgba(224,49,49,.3); }
+      .btn.primary:hover { box-shadow: 0 12px 30px rgba(224,49,49,.2), 0 0 30px rgba(224,49,49,.3); }
 
       /* Hero Card */
-      .hero-card {
-        background: var(--glass);
-        border-radius: var(--radius);
-        padding: 20px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 12px 40px var(--shadow-color);
-        backdrop-filter: blur(8px);
-      }
-      .profile {
-        display: flex;
-        gap: 14px;
-        align-items: center;
-      }
-      .avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 14px;
-        flex: 0 0 80px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-        display: grid;
-        place-items: center;
-        font-weight: 800;
-        font-size: 1.5rem;
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.04);
-      }
-      .info h3 {
-        margin: 0;
-        font-size: 1.1rem;
-      }
-      .info p {
-        margin: 4px 0 0;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-      .hero-card > div {
-        margin-top: 16px;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-      .hero-card strong {
-        color: #fff;
-      }
+      .hero-card { background: var(--glass); border-radius: var(--radius); padding:20px; border:1px solid var(--border-color); box-shadow: 0 12px 40px var(--shadow-color); backdrop-filter: blur(8px); }
+      .profile { display:flex; gap:14px; align-items:center; }
+      .avatar { width:80px; height:80px; border-radius:14px; flex:0 0 80px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display:grid; place-items:center; font-weight:800; font-size:1.5rem; color:white; border:1px solid rgba(255,255,255,.04); }
+      .info h3 { margin:0; font-size:1.1rem; }
+      .info p { margin:4px 0 0; color: var(--muted); font-size:.92rem; }
+      .hero-card > div { margin-top:16px; color: var(--muted); font-size:.9rem; }
+      .hero-card strong { color:#fff; }
 
       /* Main Sections */
-      main {
-        padding: 40px 0;
-      }
-      section.panel {
-        position: relative;
-        padding: 32px;
-        border-radius: 12px;
-        background: var(--panel);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 10px 30px var(--shadow-color);
-        margin-bottom: 36px;
-        overflow: hidden;
-      }
+      main { padding:40px 0; }
+      section.panel { position:relative; padding:32px; border-radius:12px; background: var(--panel); border:1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); margin-bottom:36px; overflow:hidden; }
 
       /* SHINY BORDER effect */
-      .shiny-border::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 12px;
-        padding: 1px;
-        background: conic-gradient(
-          from var(--angle),
-          transparent 25%,
-          var(--accent),
-          transparent 75%
-        );
-        -webkit-mask: linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: spin-border 5s linear infinite;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .shiny-border:hover::before {
-        opacity: 1;
-      }
-      @property --angle {
-        syntax: "<angle>";
-        initial-value: 0deg;
-        inherits: false;
-      }
-      @keyframes spin-border {
-        to {
-          --angle: 360deg;
-        }
-      }
+      .shiny-border::before { content:""; position:absolute; inset:0; border-radius:12px; padding:1px; background: conic-gradient(from var(--angle), transparent 25%, var(--accent), transparent 75%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin-border 5s linear infinite; opacity:0; transition: opacity .3s; }
+      .shiny-border:hover::before { opacity:1; }
+      @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+      @keyframes spin-border { to { --angle: 360deg; } }
 
-      .section-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 1.5rem;
-        margin: 0 0 12px 0;
-        font-weight: 700;
-      }
-      .section-title::before {
-        content: "";
-        width: 4px;
-        height: 24px;
-        background: var(--accent);
-        border-radius: 2px;
-      }
-      .muted {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
+      .section-title { display:flex; align-items:center; gap:12px; font-size:1.5rem; margin:0 0 12px 0; font-weight:700; }
+      .section-title::before { content:""; width:4px; height:24px; background: var(--accent); border-radius:2px; }
+      .muted { color: var(--muted); font-size:.95rem; }
 
       /* Projects Grid */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 18px;
-        margin-top: 20px;
-      }
-      .project {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        padding: 16px;
-        border-radius: 10px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.01),
-          transparent
-        );
-        border: 1px solid var(--border-color);
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-        overflow: hidden;
-      }
-      .project:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
-      }
-      .pj-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .thumb {
-        width: 64px;
-        height: 64px;
-        border-radius: 8px;
-        flex: 0 0 64px;
-        background: #090909;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.04);
-      }
-      .pj-title {
-        font-weight: 700;
-        font-size: 1.05rem;
-      }
-      .pj-desc {
-        color: var(--muted);
-        font-size: 0.92rem;
-        line-height: 1.5;
-        margin-top: 6px;
-      }
+      .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-top:20px; }
+      .project { position:relative; display:flex; flex-direction:column; gap:12px; padding:16px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,.01), transparent); border:1px solid var(--border-color); transition: transform .18s ease, box-shadow .18s ease; overflow:hidden; }
+      .project:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 18px 50px rgba(0,0,0,.4); }
+      .pj-header { display:flex; align-items:center; gap:12px; }
+      .thumb { width:64px; height:64px; border-radius:8px; flex:0 0 64px; background:#090909; display:grid; place-items:center; border:1px solid rgba(255,255,255,.04); }
+      .pj-title { font-weight:700; font-size:1.05rem; }
+      .pj-desc { color: var(--muted); font-size:.92rem; line-height:1.5; margin-top:6px; }
 
       /* GALLERY IMAGE REVEAL EFFECT */
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 14px;
-        margin-top: 20px;
-      }
-      .place {
-        position: relative;
-        padding: 12px;
-        border-radius: 10px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.01),
-          transparent
-        );
-        border: 1px solid var(--border-color);
-        cursor: pointer;
-        overflow: hidden;
-      }
-      .svg-box {
-        width: 100%;
-        height: 150px;
-        border-radius: 8px;
-        background: #070707;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        color: var(--muted);
-        font-weight: 600;
-        border: 1px solid rgba(255, 255, 255, 0.02);
-        text-align: center;
-        padding: 10px;
-        transition: opacity 0.3s ease;
-      }
-      .place .label {
-        margin-top: 8px;
-        text-align: center;
-        transition: opacity 0.3s ease;
-      }
-      .gallery-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transform: scale(1.1);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-      }
-      .place:hover .svg-box,
-      .place:hover .label {
-        opacity: 0;
-      }
-      .place:hover .gallery-image {
-        opacity: 1;
-        transform: scale(1);
-      }
+      .gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:20px; }
+      .place { position:relative; padding:12px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,.01), transparent); border:1px solid var(--border-color); cursor:pointer; overflow:hidden; }
+      .svg-box { width:100%; height:150px; border-radius:8px; background:#070707; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px; color: var(--muted); font-weight:600; border:1px solid rgba(255,255,255,.02); text-align:center; padding:10px; transition: opacity .3s ease; }
+      .place .label { margin-top:8px; text-align:center; transition: opacity .3s ease; }
+      .gallery-image { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transform: scale(1.1); transition: opacity .4s ease, transform .4s ease; }
+      .place:hover .svg-box, .place:hover .label { opacity:0; }
+      .place:hover .gallery-image { opacity:1; transform: scale(1); }
 
       /* Contact */
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-top: 12px;
-      }
-      .contact-card {
-        padding: 24px;
-        border-radius: 10px;
-        background: var(--glass);
-        border: 1px solid var(--border-color);
-      }
-      .contact-card .label {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-      .contact-link {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 8px 0 20px;
-        font-weight: 600;
-      }
-      .contact-link a {
-        color: #fff;
-        text-decoration: none;
-      }
-      .contact-link svg {
-        width: 20px;
-        height: 20px;
-        color: var(--accent);
-      }
+      .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:12px; }
+      .contact-card { padding:24px; border-radius:10px; background: var(--glass); border:1px solid var(--border-color); }
+      .contact-card .label { color: var(--muted); font-size:.9rem; }
+      .contact-link { display:flex; align-items:center; gap:10px; margin:8px 0 20px; font-weight:600; }
+      .contact-link a { color:#fff; text-decoration:none; }
+      .contact-link svg { width:20px; height:20px; color: var(--accent); }
 
-      footer {
-        padding: 32px 0;
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.9rem;
-        border-top: 1px solid var(--border-color);
-        margin-top: 20px;
-      }
-      a {
-        color: var(--accent);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      a:hover {
-        color: #fff;
-      }
+      footer { padding:32px 0; text-align:center; color: var(--muted); font-size:.9rem; border-top:1px solid var(--border-color); margin-top:20px; }
+      a { color: var(--accent); text-decoration:none; transition: color .2s; }
+      a:hover { color:#fff; }
 
       /* Back to top button */
-      #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--accent);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        opacity: 0;
-        transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
-        z-index: 1000;
-        font-size: 1.2rem;
-      }
-      #back-to-top.show {
-        opacity: 1;
-      }
-      #back-to-top:hover {
-        transform: scale(1.1) translateY(-2px);
-        box-shadow: 0 8px 25px rgba(224, 49, 49, 0.4);
-      }
+      #back-to-top { position:fixed; bottom:20px; right:20px; background: var(--accent); color:#fff; border:none; border-radius:50%; width:44px; height:44px; display:grid; place-items:center; cursor:pointer; opacity:0; transition: opacity .3s, transform .3s, box-shadow .3s; z-index:1000; font-size:1.2rem; }
+      #back-to-top.show { opacity:1; }
+      #back-to-top:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 25px rgba(224,49,49,.4); }
 
       /* Responsiveness */
-      @media (max-width: 920px) {
-        .hero-grid {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-        .hero-card {
-          order: -1;
-        }
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (max-width: 768px) {
-        .projects-grid,
-        .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-      }
+      @media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; gap:40px; } .hero-card { order:-1; } .contact-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 768px) { .projects-grid, .gallery-grid { grid-template-columns: 1fr; } }
 
       /* Reduced Motion */
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          transition: none !important;
-          animation: none !important;
-        }
-      }
+      @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
     </style>
   </head>
   <body>
@@ -652,17 +177,11 @@
       <ul>
         <li><a href="#hero" onclick="scrollToSection('hero')">Home</a></li>
         <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
-        <li>
-          <a href="#projects" onclick="scrollToSection('projects')">Hardware</a>
-        </li>
+        <li><a href="#projects" onclick="scrollToSection('projects')">Hardware</a></li>
         <li><a href="https://mors-369.github.io/portfolio-animated/animated/">Mors.studio</a></li>
         <li><a href="https://mors-369.github.io/portfolio-animated//sidcup-golf/">Sidcup Golf</a></li>
-        <li>
-          <a href="#gallery" onclick="scrollToSection('gallery')">Gallery</a>
-        </li>
-        <li>
-          <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
-        </li>
+        <li><a href="#gallery" onclick="scrollToSection('gallery')">Gallery</a></li>
+        <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
       </ul>
     </nav>
 
@@ -672,36 +191,16 @@
           <div>
             <h1 id="name-hover-effect">Himanshu Kumar</h1>
             <div class="tagline">Code. Circuits. Creativity.</div>
-            <div class="quote">
-              I build practical hardware + software solutions that scale from
-              classroom to field.
-            </div>
-
+            <div class="quote">I build practical hardware + software solutions that scale from classroom to field.</div>
             <div style="margin-top: 24px">
-              <span class="glow-rotate" id="special-quote"
-                >"Make your dreams so high that your failure is above others’
-                success."</span
-              >
+              <span class="glow-rotate" id="special-quote">"Make your dreams so high that your failure is above others’ success."</span>
             </div>
-
             <div class="cta-row">
-              <button class="btn primary" onclick="scrollToSection('projects')">
-                View Projects
-              </button>
+              <button class="btn primary" onclick="scrollToSection('projects')">View Projects</button>
               <a class="btn" href="mailto:himanshujsr462@gmail.com">Email Me</a>
-              <a
-                class="btn"
-                href="https://instagram.com/Mors__369"
-                target="_blank"
-                rel="noopener noreferrer"
-                >@Mors__369</a
-              >
+              <a class="btn" href="https://instagram.com/Mors__369" target="_blank" rel="noopener noreferrer">@Mors__369</a>
             </div>
-
-            <div style="margin-top: 16px" class="muted">
-              Senior ATL Student In-Charge — Innovator focused on robotics, IoT,
-              AI & embedded systems
-            </div>
+            <div style="margin-top: 16px" class="muted">Senior ATL Student In-Charge — Innovator focused on robotics, IoT, AI & embedded systems</div>
           </div>
 
           <aside class="hero-card">
@@ -709,25 +208,14 @@
               <div class="avatar" aria-label="Himanshu Kumar Avatar">HK</div>
               <div class="info">
                 <h3>Himanshu Kumar</h3>
-                <p class="muted">
-                  Innovator • Robotics & AI Developer • ATL Leader
-                </p>
+                <p class="muted">Innovator • Robotics & AI Developer • ATL Leader</p>
               </div>
             </div>
-
-            <div>
-              <strong>Achievements:</strong>
-              <div style="margin-top: 6px">
-                Winner — QUANTUM (LFS Telco), HUNCH (DPS Sakchi)
-              </div>
+            <div><strong>Achievements:</strong>
+              <div style="margin-top: 6px">Winner — QUANTUM (LFS Telco), HUNCH (DPS Sakchi)</div>
             </div>
-
-            <div>
-              <strong>Skills:</strong>
-              <div style="margin-top: 6px">
-                Arduino • ESP8266 • Raspberry Pi • Python • C++ • Embedded • Web
-                • IoT
-              </div>
+            <div><strong>Skills:</strong>
+              <div style="margin-top: 6px">Arduino • ESP8266 • Raspberry Pi • Python • C++ • Embedded • Web • IoT</div>
             </div>
           </aside>
         </div>
@@ -737,163 +225,88 @@
     <main class="container">
       <section id="about" class="panel shiny-border">
         <h3 class="section-title">About Me</h3>
-        <p class="muted">
-          As the Senior Student In-Charge at my school's Atal Tinkering Lab, I
-          lead teams and build end-to-end prototypes that merge the physical and
-          digital worlds. My work centers on solving practical problems in
-          agritech, robotics, and creative AI, with a focus on delivering
-          impactful solutions using resourceful and efficient design.
-        </p>
+        <p class="muted">As the Senior Student In-Charge at my school's Atal Tinkering Lab, I lead teams and build end-to-end prototypes that merge the physical and digital worlds. My work centers on solving practical problems in agritech, robotics, and creative AI, with a focus on delivering impactful solutions using resourceful and efficient design.</p>
       </section>
 
       <section id="projects" class="panel shiny-border">
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-          "
-        >
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
           <h3 class="section-title">Hardware Projects</h3>
-          <div class="muted small">
-            Selected work: prototype → field-tested → competition-ready
-          </div>
+          <div class="muted small">Selected work: prototype → field-tested → competition-ready</div>
         </div>
 
         <div class="projects-grid">
           <article class="project shiny-border" tabindex="0">
             <div class="pj-header">
               <div class="thumb" aria-hidden="true">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M7 12L10 9L13 12L17 8"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 12L10 9L13 12L17 8" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               <div class="pj-title">Advanced Farm Tech</div>
             </div>
-            <div class="pj-desc">
-              Voice & web app control (Blynk-style) IoT system — remote pumps,
-              lights and multi-sensor monitoring. Deployed prototypes tested in
-              real environments.
-            </div>
+            <div class="pj-desc">Voice & web app control (Blynk-style) IoT system — remote pumps, lights and multi-sensor monitoring. Deployed prototypes tested in real environments.</div>
           </article>
 
           <article class="project shiny-border" tabindex="0">
             <div class="pj-header">
               <div class="thumb" aria-hidden="true">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 2.69006C17.5228 2.69006 22 7.16721 22 12.6901C22 18.2129 17.5228 22.6901 12 22.6901C6.47715 22.6901 2 18.2129 2 12.6901C2 7.16721 6.47715 2.69006 12 2.69006Z"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M7.64062 10.3301L14.4706 15.4801"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M12 12.6901L16.36 14.3901"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2.69006C17.5228 2.69006 22 7.16721 22 12.6901C22 18.2129 17.5228 22.6901 12 22.6901C6.47715 22.6901 2 18.2129 2 12.6901C2 7.16721 6.47715 2.69006 12 2.69006Z" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7.64062 10.3301L14.4706 15.4801" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 12.6901L16.36 14.3901" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="pj-title glow-rotate" style="display: inline-block">
-                Freemium Novel App (Idea)
-              </div>
+              <div class="pj-title glow-rotate" style="display:inline-block">Freemium Novel App (Idea)</div>
             </div>
-            <div class="pj-desc">
-              Product concept & prototype for a freemium publishing platform
-              with AI-assisted tools for writers and comic creators.
-            </div>
+            <div class="pj-desc">Product concept & prototype for a freemium publishing platform with AI-assisted tools for writers and comic creators.</div>
           </article>
 
           <article class="project shiny-border" tabindex="0">
             <div class="pj-header">
               <div class="thumb" aria-hidden="true">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 8V5C14 4.44772 13.5523 4 13 4H11C10.4477 4 10 4.44772 10 5V8"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <rect
-                    x="4"
-                    y="8"
-                    width="16"
-                    height="12"
-                    rx="2"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M10 14H14"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M4 12H2"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M22 12H20"
-                    stroke="#e03131"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 8V5C14 4.44772 13.5523 4 13 4H11C10.4477 4 10 4.44772 10 5V8" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="4" y="8" width="16" height="12" rx="2" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 14H14" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 12H2" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M22 12H20" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
               <div class="pj-title">Line Following Robot</div>
             </div>
-            <div class="pj-desc">
-              Precision-soldered autonomous robot with tuned sensor analytics
-              and PID control — awarded in regional competitions for speed and
-              accuracy.
+            <div class="pj-desc">Precision-soldered autonomous robot with tuned sensor analytics and PID control — awarded in regional competitions for speed and accuracy.</div>
+          </article>
+
+          <!-- NEW: Robotic Arm (ESP8266) -->
+          <article class="project shiny-border" tabindex="0">
+            <div class="pj-header">
+              <div class="thumb" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 20h16" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M6 20V12a3 3 0 0 1 3-3h2l2-3 2 1-1 3h2a3 3 0 0 1 3 3v7" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="15.5" cy="7" r="1.5" stroke="#e03131" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="pj-title">ESP8266 Robotic Arm</div>
             </div>
+            <div class="pj-desc">Wi‑Fi controlled 4–6 DOF arm using ESP8266 + PCA9685 servo driver. Web UI joystick & presets, smooth motion with acceleration limits; optional inverse kinematics for precise pick‑and‑place.</div>
+          </article>
+
+          <!-- NEW: Battle Bot (FlySky FS‑i6) -->
+          <article class="project shiny-border" tabindex="0">
+            <div class="pj-header">
+              <div class="thumb" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="10" width="18" height="8" rx="2" stroke="#e03131" stroke-width="2"/>
+                  <circle cx="7" cy="19" r="2" stroke="#e03131" stroke-width="2"/>
+                  <circle cx="17" cy="19" r="2" stroke="#e03131" stroke-width="2"/>
+                  <path d="M4 10l2-4h12l2 4" stroke="#e03131" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="pj-title">Battle Bot — FlySky FS‑i6</div>
+            </div>
+            <div class="pj-desc">RC combat bot driven via FS‑i6 receiver: differential drive with mixer, L298N motor drivers, 775/555 weapon motor via relay/ESC, failsafe + arming, turbo mode on CH6. Tuned for instant direction changes with smooth throttle curves.</div>
           </article>
         </div>
       </section>
@@ -902,151 +315,51 @@
         <h3 class="section-title">Gallery & Demos</h3>
         <div class="gallery-grid">
           <div class="place">
-            <img
-              src="WhatsApp Image 2025-08-17 at 12.46.50_073fb031.jpg"
-              class="gallery-image"
-              alt="Farm Tech Demo"
-            />
+            <img src="WhatsApp Image 2025-08-17 at 12.46.50_073fb031.jpg" class="gallery-image" alt="Farm Tech Demo" />
             <div class="svg-box">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 7V12H17"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 21C7.02944 21 3 16.9706 3 12H7"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7V12H17" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 21C7.02944 21 3 16.9706 3 12H7" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               Farm Tech Demo
             </div>
             <div class="label muted">Remote UI & Sensor Logs</div>
           </div>
           <div class="place">
-            <img
-              src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?q=80&w=1974&auto=format&fit=crop"
-              class="gallery-image"
-              alt="Line-Follower Robot"
-            />
+            <img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?q=80&w=1974&auto=format&fit=crop" class="gallery-image" alt="Line-Follower Robot" />
             <div class="svg-box">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="7"
-                  cy="18"
-                  r="2"
-                  stroke="#e03131"
-                  stroke-width="2"
-                />
-                <circle
-                  cx="17"
-                  cy="18"
-                  r="2"
-                  stroke="#e03131"
-                  stroke-width="2"
-                />
-                <path d="M5 18H7" stroke="#e03131" stroke-width="2" />
-                <path d="M17 18H19" stroke="#e03131" stroke-width="2" />
-                <path
-                  d="M17 16V11C17 9 16 6 12 6C8 6 7 9 7 11V16"
-                  stroke="#e03131"
-                  stroke-width="2"
-                />
-                <path d="M5 16H19" stroke="#e03131" stroke-width="2" />
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7" cy="18" r="2" stroke="#e03131" stroke-width="2"/>
+                <circle cx="17" cy="18" r="2" stroke="#e03131" stroke-width="2"/>
+                <path d="M5 18H7" stroke="#e03131" stroke-width="2"/>
+                <path d="M17 18H19" stroke="#e03131" stroke-width="2"/>
+                <path d="M17 16V11C17 9 16 6 12 6C8 6 7 9 7 11V16" stroke="#e03131" stroke-width="2"/>
+                <path d="M5 16H19" stroke="#e03131" stroke-width="2"/>
               </svg>
               Line-Follower Prototype
             </div>
             <div class="label muted">High-precision sensors • PID tuning</div>
           </div>
           <div class="place">
-            <img
-              src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop"
-              class="gallery-image"
-              alt="App Mockups"
-            />
+            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop" class="gallery-image" alt="App Mockups" />
             <div class="svg-box">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="3"
-                  y="3"
-                  width="18"
-                  height="18"
-                  rx="2"
-                  stroke="#e03131"
-                  stroke-width="2"
-                />
-                <path d="M3 9H21" stroke="#e03131" stroke-width="2" />
-                <path d="M9 21V9" stroke="#e03131" stroke-width="2" />
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#e03131" stroke-width="2"/>
+                <path d="M3 9H21" stroke="#e03131" stroke-width="2"/>
+                <path d="M9 21V9" stroke="#e03131" stroke-width="2"/>
               </svg>
               App Mockups
             </div>
             <div class="label muted">UI wireframes • AI features</div>
           </div>
           <div class="place">
-            <img
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop"
-              class="gallery-image"
-              alt="ATL Workshop"
-            />
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop" class="gallery-image" alt="ATL Workshop" />
             <div class="svg-box">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18 8L22 12L18 16"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M6 8L2 12L6 16"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M14.5 4L9.5 20"
-                  stroke="#e03131"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 8L22 12L18 16" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 8L2 12L6 16" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.5 4L9.5 20" stroke="#e03131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               ATL Workshops
             </div>
@@ -1061,103 +374,35 @@
           <div class="contact-card">
             <div class="label">Email</div>
             <div class="contact-link">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                ></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-              <a href="mailto:himanshujsr462@gmail.com"
-                >himanshujsr462@gmail.com</a
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <a href="mailto:himanshujsr462@gmail.com">himanshujsr462@gmail.com</a>
             </div>
 
             <div class="label">Instagram</div>
             <div class="contact-link">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path
-                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                ></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-              <a
-                href="https://instagram.com/Mors__369"
-                target="_blank"
-                rel="noopener noreferrer"
-                >@Mors__369</a
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <a href="https://instagram.com/Mors__369" target="_blank" rel="noopener noreferrer">@Mors__369</a>
             </div>
 
             <div class="label">GitHub</div>
             <div class="contact-link">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                ></path>
-              </svg>
-              <a
-                href="https://github.com/Mors369"
-                target="_blank"
-                rel="noopener noreferrer"
-                >@Mors369</a
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <a href="https://github.com/Mors369" target="_blank" rel="noopener noreferrer">@Mors369</a>
             </div>
           </div>
 
           <div class="contact-card">
             <div class="label">Quick Pitch</div>
-            <p class="muted">
-              I build practical hardware+software solutions — IoT agriculture,
-              autonomous robots, and creative AI tools — using resourceful
-              design and rapid prototyping.
-            </p>
+            <p class="muted">I build practical hardware+software solutions — IoT agriculture, autonomous robots, and creative AI tools — using resourceful design and rapid prototyping.</p>
             <div style="margin-top: 12px">
-              <button
-                class="btn primary"
-                onclick="window.location='mailto:himanshujsr462@gmail.com'"
-              >
-                Get in Touch
-              </button>
+              <button class="btn primary" onclick="window.location='mailto:himanshujsr462@gmail.com'">Get in Touch</button>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      © <span id="year"></span> Himanshu Kumar — Code. Circuits. Creativity.
-    </footer>
+    <footer>© <span id="year"></span> Himanshu Kumar — Code. Circuits. Creativity.</footer>
 
     <button id="back-to-top" aria-label="Back to top">↑</button>
 
@@ -1177,10 +422,7 @@
         nameText.split("").forEach((char) => {
           const span = document.createElement("span");
           span.textContent = char;
-          // Handle space character to prevent collapsing
-          if (char === " ") {
-            span.innerHTML = "&nbsp;";
-          }
+          if (char === " ") { span.innerHTML = "&nbsp;"; }
           nameEl.appendChild(span);
         });
 
@@ -1191,15 +433,8 @@
         });
 
         // Lenis smooth-scroll
-        const lenis = new Lenis({
-          duration: 1.0,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smooth: true,
-        });
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
+        const lenis = new Lenis({ duration: 1.0, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
         // Scroll helper
@@ -1211,91 +446,33 @@
 
         // GSAP animations
         gsap.registerPlugin(ScrollTrigger);
-
         const heroTimeline = gsap.timeline({ delay: 0.2 });
         heroTimeline
-          .from("#name-hover-effect span", {
-            y: -28,
-            opacity: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            stagger: 0.05,
-          })
-          .from(
-            ".tagline",
-            { y: 12, opacity: 0, duration: 0.9, ease: "power3.out" },
-            "-=1"
-          )
-          .from(
-            ".quote",
-            { y: 8, opacity: 0, duration: 0.9, ease: "power3.out" },
-            "-=0.8"
-          )
-          .from(
-            ".glow-rotate",
-            { scale: 0.9, opacity: 0, duration: 0.9, ease: "back.out(1.7)" },
-            "-=0.7"
-          )
-          .from(
-            ".cta-row .btn",
-            {
-              y: 10,
-              opacity: 0,
-              stagger: 0.1,
-              duration: 0.7,
-              ease: "power2.out",
-            },
-            "-=0.7"
-          )
-          .from(
-            ".hero-card",
-            { x: 40, opacity: 0, duration: 1, ease: "power3.out" },
-            "-=1"
-          );
+          .from("#name-hover-effect span", { y: -28, opacity: 0, duration: 0.9, ease: "power3.out", stagger: 0.05 })
+          .from(".tagline", { y: 12, opacity: 0, duration: 0.9, ease: "power3.out" }, "-=1")
+          .from(".quote", { y: 8, opacity: 0, duration: 0.9, ease: "power3.out" }, "-=0.8")
+          .from(".glow-rotate", { scale: 0.9, opacity: 0, duration: 0.9, ease: "back.out(1.7)" }, "-=0.7")
+          .from(".cta-row .btn", { y: 10, opacity: 0, stagger: 0.1, duration: 0.7, ease: "power2.out" }, "-=0.7")
+          .from(".hero-card", { x: 40, opacity: 0, duration: 1, ease: "power3.out" }, "-=1");
 
         // Reveal panels
         gsap.utils.toArray("main section.panel").forEach((panel) => {
-          gsap.from(panel, {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-          });
+          gsap.from(panel, { scrollTrigger: { trigger: panel, start: "top 85%", toggleActions: "play none none reverse" }, y: 40, opacity: 0, duration: 1, ease: "power3.out" });
         });
 
         // Stagger reveal inside projects & gallery
-        gsap.utils
-          .toArray(".projects-grid .project, .gallery-grid .place")
-          .forEach((el, i) => {
-            gsap.from(el, {
-              scrollTrigger: { trigger: el, start: "top 90%" },
-              y: 20,
-              opacity: 0,
-              duration: 0.7,
-              delay: i * 0.08,
-              ease: "power3.out",
-            });
-          });
+        gsap.utils.toArray(".projects-grid .project, .gallery-grid .place").forEach((el, i) => {
+          gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 20, opacity: 0, duration: 0.7, delay: i * 0.08, ease: "power3.out" });
+        });
 
         // Back to top button
         const backToTop = document.getElementById("back-to-top");
-        window.addEventListener("scroll", () => {
-          backToTop.classList.toggle("show", window.scrollY > 300);
-        });
-        backToTop.addEventListener("click", () => {
-          lenis.scrollTo(0, { duration: 1.5 });
-        });
+        window.addEventListener("scroll", () => { backToTop.classList.toggle("show", window.scrollY > 300); });
+        backToTop.addEventListener("click", () => { lenis.scrollTo(0, { duration: 1.5 }); });
 
         // accessibility: reduce animations if user prefers reduced motion
         const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-        if (mq.matches) {
-          gsap.globalTimeline.timeScale(0);
-        }
+        if (mq.matches) { gsap.globalTimeline.timeScale(0); }
       });
     </script>
   </body>
